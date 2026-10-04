@@ -8,7 +8,8 @@ import React from "react";
 
 const getBooks = async() =>{
     try{
-        const res = await fetch(`${process.env.NEXT_PUBLIC_SERVER_BASE_URL}/booksData.json`);
+        const baseUrl = process.env.NEXT_PUBLIC_SERVER_BASE_URL || 'http://localhost:3000';
+        const res = await fetch(`${baseUrl}/booksData.json`);
         return res.json();
     }catch(error){
         console.error("Error fetching books data: ", error);
