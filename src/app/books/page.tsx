@@ -3,8 +3,13 @@ import { IBook } from '@/types/books.type';
 import BookCard from '@/components/shared/BookCard';
 
 const getBooks = async() =>{
-    const res = await fetch('http://localhost:3000/booksData.json');
-    return res.json();
+    try{
+        const res = await fetch(`${process.env.NEXT_PUBLIC_SERVER_BASE_URL}/booksData.json`);
+        return res.json();
+    }catch(error){
+        console.error("Error fetching books data: ", error);
+        return [];
+    }
 }
 
 const BooksPage = async() => {
